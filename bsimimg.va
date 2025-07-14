@@ -1,0 +1,54 @@
+// *****************************************************************************************
+// *  BSIM-IMG 103.1.0beta0_2 released on 12/29/2023                                       *
+// *  BSIM Independent Multi-Gate Model (Verilog-A)                                        *
+// *****************************************************************************************
+
+// *****************************************************************************************
+// *  Copyright © 2023 University of California                                            *
+// *                                                                                       *
+// *  Project director: Prof. Chenming Hu                                                  *
+// *                                                                                       *
+// *  Current developers: Dinesh Rajasekharan     (Postdoc, UC Berkeley)                   *
+// *                      Girish Pahwa            (Assistant Researcher, UC Berkeley)      *
+// *                      Ahtisham Pampori        (Postdoc, UC Berkeley)                   *
+// *                      Chetan K. Dabhi         (Postdoc, UC Berkeley)                   *
+// *                      Chien-Ting Tung         (Ph.D., UC Berkeley)                     *
+// *                      Jen Hao Chen            (Ph.D., UC Berkeley)                     *
+// *****************************************************************************************
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+// ************************************************************
+// *  SHMOD is a model parameter                              *
+// *    SHMOD = 1: Self-heating turned on                     *
+// *    SHMOD = 0: Self-heating turned off                    *
+// *                                                          *
+// *  RDSMOD is a model parameter                             *
+// *    RDSMOD = 1: External source/drain resistance model    *
+// *    RDSMOD = 0: Internal source/drain resistance model    *
+// *                                                          *
+// *  RGATEMOD is a model parameter                           *
+// *    RGATEMOD = 1: Gate Resistance / ge node turned on     *
+// *    RGATEMOD = 0: Gate Resistance / ge node turned off    *
+// ************************************************************
+
+// In Verilog-A the number of internal nodes cannot be controlled
+// by a model parameter. Therefore we use `define statements to
+// control it. Comment the following lines whenever possible for
+// best computational efficiency.
+
+
+`include "common_defs.include"
+
+module bsimimg(d, fg, s, bg, qin, t);
+inout d, fg, s, bg, qin, t;
+electrical d, fg, s, bg, qin, di, si, ge, gi, n;
+thermal t;
+branch (t) rth_branch;
+branch (t) ith_branch;
+
+
+`include "bsimimg_body.include"
+
+endmodule
