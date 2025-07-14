@@ -1,0 +1,1 @@
+BSIM-IMG is a dual-gate MOSFET model from Berkeley, California, which measures its IV characteristics. If a transient scan is performed on it (time is added), the IV characteristic result graph will have many twists and turns. What is the reason for this? Is there a problem with the official model? Or is it a problem with my test? I hope everyone can discuss it together.
